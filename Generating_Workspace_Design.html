@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generating Workspace Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { margin: 0; padding: 20px; background: #0f172a; color: white; min-height: 100vh; display: flex; justify-content: center; align-items: center; }</style>
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ahmed-abdelrazik9.github.io/Cards/Generating_Workspace_Design.html" />
+  <meta property="og:title" content="Generating Workspace Design" />
+  <meta property="og:description" content="An interactive card created with MavericPro — open to experience it!" />
+  <meta property="og:image" content="https://ahmed-abdelrazik9.github.io/Cards/og-preview.png" />
+  <meta property="og:site_name" content="MavericPro Cards" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generating Workspace Design" />
+  <meta name="twitter:description" content="An interactive card created with MavericPro — open to experience it!" />
+</head>
+<body>
+    import { useState } from 'react';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "/components/ui/tabs";
+import { Button } from "/components/ui/button";
+import { Input } from "/components/ui/input";
+import { Textarea } from "/components/ui/textarea";
+import { Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "/components/ui/card";
+import { Badge } from "/components/ui/badge";
+
+export default function GeneratingWorkspace() {
+  const [activeTab, setActiveTab] = useState('preview');
+  const [code, setCode] = useState('// Your code here\nconsole.log("Hello, Workspace!");');
+  const [output, setOutput] = useState('Output will appear here...');
+
+  const handleGenerate = () => {
+    // Simulate generation
+    setOutput(`Generated from code:\n${code}`);
+  };
+
+  return (
+    <div className="h-screen flex flex-col bg-gray-50">
+      {/* Top Bar */}
+      <div className="bg-white border-b px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <h1 className="text-xl font-semibold text-gray-900">Generating Workspace</h1>
+          <Badge variant="secondary">Active</Badge>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Button variant="outline" size="sm">Save</Button>
+          <Button variant="outline" size="sm">Export</Button>
+          <Button onClick={handleGenerate} className="bg-blue-600 hover:bg-blue-700">
+            Generate
+          </Button>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r p-4 overflow-y-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle>Files</CardTitle>
+              <CardDescription>Manage your project files</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                <li className="flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>main.js</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                  <span>styles.css</span>
+                </li>
+                <li className="flex items-center space-x-2 opacity-50">
+                  <span>index.html</span>
+                </li>
+              </ul>
+              <Button variant="ghost" size="sm" className="mt-4 w-full">
+                + New File
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle>Settings</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium block mb-1">Theme</label>
+                  <select className="w-full p-2 border rounded">
+                    <option>Light</option>
+                    <option>Dark</option>
+                  </select>
+                </div>
+                <Input placeholder="API Key" />
+                <Button variant="outline" size="sm" className="w-full">
+                  Configure
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tabbed Area */}
+        <div className="flex-1 flex flex-col">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+            <div className="border-b bg-white">
+              <TabsList className="grid w-full grid-cols-2 h-12">
+                <TabsTrigger value="preview" className="data-[state=active]:shadow-none">Preview</TabsTrigger>
+                <TabsTrigger value="code" className="data-[state=active]:shadow-none">Code</TabsTrigger>
+              </TabsList>
+            </div>
+
+            {/* Preview Tab */}
+            <TabsContent value="preview" className="flex-1 p-4 overflow-auto">
+              <Card className="h-full">
+                <CardContent className="flex items-center justify-center h-full bg-gray-100">
+                  <div className="text-center">
+                    <h2 className="text-2xl font-bold mb-2">Preview</h2>
+                    <p className="text-gray-600 mb-4">Output from generated code:</p>
+                    <div className="bg-white p-4 rounded-lg border max-w-md w-full">
+                      <pre className="text-sm whitespace-pre-wrap">{output}</pre>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Code Tab */}
+            <TabsContent value="code" className="flex-1 flex flex-col p-0">
+              <div className="p-4 border-b bg-white">
+                <Input placeholder="Search in code..." className="max-w-md" />
+              </div>
+              <div className="flex-1 flex">
+                <div className="w-12 bg-gray-100 flex items-center justify-center text-xs font-mono text-gray-600">
+                  {Array.from({length: 20}, (_, i) => (
+                    <div key={i} className="py-1">{i + 1}</div>
+                  ))}
+                </div>
+                <Textarea
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  className="flex-1 resize-none border-l p-4 font-mono text-sm focus-visible:ring-0"
+                  placeholder="Write your code here..."
+                  rows={20}
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+</body>
+</html>
