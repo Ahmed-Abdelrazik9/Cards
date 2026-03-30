@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Dynamic Wish Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { margin: 0; padding: 20px; background: #0f172a; color: white; min-height: 100vh; display: flex; justify-content: center; align-items: center; }</style>
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ahmed-abdelrazik9.github.io/Cards/Improved_Dynamic_Wish_Card.html" />
+  <meta property="og:title" content="Improved Dynamic Wish Card" />
+  <meta property="og:description" content="An interactive card created with MavericPro — open to experience it!" />
+  <meta property="og:image" content="https://ahmed-abdelrazik9.github.io/Cards/og-preview.png" />
+  <meta property="og:site_name" content="MavericPro Cards" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Improved Dynamic Wish Card" />
+  <meta name="twitter:description" content="An interactive card created with MavericPro — open to experience it!" />
+</head>
+<body>
+    import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '/components/ui/card';
+import { Button } from '/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '/components/ui/alert';
+import { Badge } from '/components/ui/badge';
+
+export default function GreetingCard() {
+  const [showMessage, setShowMessage] = useState(false);
+  const [colors, setColors] = useState([
+    'from-blue-500', 
+    'from-indigo-500', 
+    'from-purple-500', 
+    'from-violet-500', 
+    'from-cyan-500'
+  ]);
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  // Dynamic color cycling
+  useEffect(() => {
+    if (isAnimating) {
+      const interval = setInterval(() => {
+        setCurrentColorIndex((prev) => (prev + 1) % colors.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [colors, isAnimating]);
+
+  const currentGradient = `bg-gradient-to-br ${colors[currentColorIndex]} via-purple-600 to-indigo-700`;
+
+  const handleButtonClick = () => {
+    setShowMessage(true);
+    setIsAnimating(false); // Pause animation during surprise
+    // Restart animation after a bit
+    setTimeout(() => setIsAnimating(true), 6000);
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4">
+      <Card 
+        className={`
+          w-full max-w-2xl h-[500px] shadow-2xl border-0 
+          ${currentGradient} text-white backdrop-blur-sm 
+          transform transition-all duration-500 hover:scale-105 hover:rotate-1 
+          animate-pulse hover:animate-bounce
+        `}
+      >
+        <CardHeader className="text-center pb-6">
+          <div className="mb-4 flex justify-center space-x-3">
+            <Badge 
+              className="bg-blue-300/20 text-blue-100 text-lg px-4 py-2 border border-blue-200/50 animate-bounce backdrop-blur-sm"
+              variant="outline"
+            >
+              ✨
+            </Badge>
+            <Badge 
+              className="bg-indigo-300/20 text-indigo-100 text-lg px-4 py-2 border border-indigo-200/50 animate-bounce backdrop-blur-sm"
+              variant="outline"
+            >
+              🌟
+            </Badge>
+          </div>
+          <CardTitle className="text-5xl font-bold mb-3 bg-gradient-to-r from-blue-200 via-white to-purple-200 bg-clip-text text-transparent drop-shadow-lg">
+            Wish You the Best, Omar!
+          </CardTitle>
+          <p className="text-xl text-white italic">A vibrant, dynamic message just for you! 🎉</p>
+        </CardHeader>
+        <CardContent className="flex flex-col justify-center items-center space-y-6 pt-6">
+          <p className="text-2xl text-center text-white leading-relaxed px-4">
+            May your days be filled with vibrant joy, unstoppable success, 
+            and endless possibilities. You're absolutely amazing! ✨
+          </p>
+          {!showMessage ? (
+            <Button
+              onClick={handleButtonClick}
+              className="bg-white/20 hover:bg-white/30 text-white px-10 py-4 rounded-full text-xl font-bold border-2 border-white/30 transform transition-all duration-300 hover:scale-110 animate-pulse backdrop-blur-sm"
+            >
+              💥 Reveal Colorful Surprise!
+            </Button>
+          ) : (
+            <div className="w-full max-w-md space-y-4">
+              <Alert className="bg-gradient-to-r from-emerald-50/80 to-blue-50/80 border-l-4 border-emerald-400 animate-expand backdrop-blur-sm">
+                <AlertTitle className="text-3xl font-bold text-emerald-700 flex items-center justify-center">
+                  Extra Vibrant Cheers! 🎊
+                </AlertTitle>
+                <AlertDescription className="text-xl text-gray-800 leading-relaxed">
+                  Keep shining bright, Omar! The best adventures are just beginning. 
+                  Let's make every moment count. 🌟✨
+                </AlertDescription>
+                <div className="flex justify-center space-x-3 mt-4">
+                  <Badge className="bg-blue-400/80 text-white animate-pulse">Success</Badge>
+                  <Badge className="bg-purple-400/80 text-white animate-pulse">Joy</Badge>
+                  <Badge className="bg-cyan-400/80 text-white animate-pulse">Possibilities</Badge>
+                </div>
+                <Button
+                  onClick={() => setShowMessage(false)}
+                  variant="outline"
+                  className="mt-6 bg-white/20 hover:bg-white/30 text-white border-white/50"
+                >
+                  🔄 Back to Magic
+                </Button>
+              </Alert>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+</body>
+</html>
