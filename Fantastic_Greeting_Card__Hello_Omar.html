@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Greeting Card: Hello Omar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { margin: 0; padding: 20px; background: #0f172a; color: white; min-height: 100vh; display: flex; justify-content: center; align-items: center; }</style>
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ahmed-abdelrazik9.github.io/Cards/Fantastic_Greeting_Card__Hello_Omar.html" />
+  <meta property="og:title" content="Fantastic Greeting Card: Hello Omar" />
+  <meta property="og:description" content="An interactive card created with MavericPro — open to experience it!" />
+  <meta property="og:image" content="https://ahmed-abdelrazik9.github.io/Cards/og-preview.png" />
+  <meta property="og:site_name" content="MavericPro Cards" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fantastic Greeting Card: Hello Omar" />
+  <meta name="twitter:description" content="An interactive card created with MavericPro — open to experience it!" />
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Greeting Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .enchanted-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 80%, #ffd700 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #ff69b4 0%, transparent 50%),
+                linear-gradient(45deg, #87ceeb, #98fb98);
+        }
+        .floating-islands {
+            position: absolute;
+            top: -50px;
+            left: 50px;
+            width: 100px;
+            height: 60px;
+            background: #90ee90;
+            border-radius: 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-islands::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 20px;
+            width: 60px;
+            height: 40px;
+            background: #87ceeb;
+            border-radius: 50%;
+        }
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+        .sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 60%; left: 80%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 80%; left: 20%; animation-delay: 1s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        .message {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        .message h1 {
+            font-size: 2.5em;
+            color: #8b0000;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        .floral-border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 3px solid #ff69b4;
+            border-radius: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .floral-border::before,
+        .floral-border::after {
+            content: '✿';
+            position: absolute;
+            font-size: 1.5em;
+            color: #ff69b4;
+        }
+        .floral-border::before { top: -10px; left: 50%; transform: translateX(-50%); }
+        .floral-border::after { bottom: -10px; left: 50%; transform: translateX(-50%); }
+        .unicorn-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffd700; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #ffd700, 0 0 30px #ffd700; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="enchanted-bg"></div>
+        <div class="floating-islands"></div>
+        <div class="sparkles">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <div class="floral-border"></div>
+        <div class="message">
+            <div class="unicorn-icon">🦄</div>
+            <h1>Hello Omar,<br>All the Best!</h1>
+        </div>
+    </div>
+</body>
+</html>
+
+</body>
+</html>
